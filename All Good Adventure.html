@@ -1,0 +1,746 @@
+﻿<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>All Good Adventure</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="toast" id="toast"></div>
+
+<!-- STEP SUCCESS MODAL -->
+<div class="step-ok-overlay" id="stepOkOverlay">
+  <div class="step-ok-box">
+    <div class="step-ok-icon">✓</div>
+    <div class="step-ok-title">Langkah Selesai!</div>
+    <div class="step-ok-desc" id="stepOkDesc">Berhasil diisi. Melanjutkan ke langkah berikutnya...</div>
+  </div>
+</div>
+
+<!-- DRAWER -->
+<div class="drawer-overlay" id="drawerOverlay" onclick="closeDrawer()"></div>
+<div class="drawer" id="drawer">
+  <div class="drawer-head">
+    <div style="display:flex;align-items:center;gap:10px"><div class="logo-mark"><img src="logoTrip.png" alt="logo"></div><span style="font-weight:800;font-size:15px">All Good Adventure</span></div>
+    <button class="drawer-close" onclick="closeDrawer()">✕</button>
+  </div>
+  <div class="drawer-links">
+    <a onclick="nav('beranda');closeDrawer()">🏠 Beranda</a>
+    <a onclick="nav('katalog');closeDrawer()">🗺️ Katalog</a>
+    <a onclick="nav('booking');closeDrawer()">🎒 Booking Layanan</a>
+    <a onclick="nav('tourguide');closeDrawer()">👤 Tour Guide</a>
+    <a onclick="nav('tentang');closeDrawer()">ℹ️ Tentang Kami</a>
+  </div>
+  <div class="drawer-btns">
+    <button class="btn-ghost" onclick="nav('login');closeDrawer()">Login</button>
+    <button class="btn-primary" onclick="nav('register');closeDrawer()">✨ Register</button>
+  </div>
+</div>
+
+<!-- GUIDE MODAL -->
+<div class="modal-overlay" id="guideModal" onclick="closeGuideModal(event)">
+  <div class="modal-box" id="modalBox"></div>
+</div>
+
+<!-- DESTINATION MODAL (Katalog) -->
+<div class="dest-modal-overlay" id="destModal" onclick="closeDestModal(event)">
+  <div class="dest-modal" id="destModalBox"></div>
+</div>
+
+<!-- ════ PAGE: BERANDA ════ -->
+<div class="page active" id="page-beranda">
+  <nav class="navbar">
+    <a class="navbar-logo" onclick="nav('beranda')"><div class="logo-mark"><img src="logoTrip.png" alt="logo"></div>All Good Adventure</a>
+    <div class="navbar-links">
+      <a class="active" onclick="nav('beranda')">Beranda</a>
+      <a onclick="nav('katalog')">Katalog</a>
+      <a onclick="nav('booking')">Booking Layanan</a>
+      <a onclick="nav('tourguide')">Tour Guide</a>
+      <a onclick="nav('tentang')">Tentang Kami</a>
+    </div>
+    <div class="navbar-actions">
+      <button class="btn-ghost" onclick="nav('register')">Register</button>
+      <button class="btn-primary" onclick="nav('login')">Login →</button>
+    </div>
+    <button class="hamburger" onclick="openDrawer()"><span></span><span></span><span></span></button>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-bg"></div><div class="hero-grad"></div>
+    <div class="hero-content">
+      <div class="hero-badge">🌄 Private Trip Specialist — Lombok</div>
+      <h1>Kamu Pusing?<br><span>Yuk Healing</span><br>Bareng Kami!</h1>
+      <p>Temukan pengalaman private trip terbaik di Lombok — dari pendakian Rinjani, island hopping Gili, hingga private getaway eksklusif untuk kamu dan orang-orang terkasih.</p>
+      <div class="hero-actions">
+        <button class="btn-hero" onclick="nav('katalog')">Lihat Destinasi →</button>
+        <button class="btn-hero-ol" onclick="nav('booking')">Booking Sekarang</button>
+      </div>
+      <div class="hero-stats">
+        <div><div class="hs-num">50+</div><div class="hs-label">Destinasi Lombok & Bali</div></div>
+        <div><div class="hs-num">10K+</div><div class="hs-label">Traveler Puas</div></div>
+        <div><div class="hs-num">100%</div><div class="hs-label">Private Trip</div></div>
+        <div><div class="hs-num">48</div><div class="hs-label">Tour Guide Aktif</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="why-grid">
+      <div>
+        <div class="sec-label">Kenapa Kami</div>
+        <div class="sec-title">Kenapa Memilih<br>All Good Adventure?</div>
+        <div class="sec-sub">Kami spesialis private trip di Lombok — memastikan setiap perjalananmu eksklusif, aman, dan sesuai keinginanmu.</div>
+        <div class="why-list" style="margin-top:32px">
+          <div class="why-item"><div class="why-icon">🗺️</div><div><h4>Destinasi Terbaik Lombok</h4><p>Dari puncak Rinjani, Gili Islands, Selong Belanak hingga spot tersembunyi yang hanya kami tahu.</p></div></div>
+          <div class="why-item"><div class="why-icon">👤</div><div><h4>Tour Guide Bersertifikat</h4><p>Semua guide kami telah tersertifikasi BNSP, berpengalaman, dan siap membuat tripmu luar biasa.</p></div></div>
+          <div class="why-item"><div class="why-icon">🔒</div><div><h4>100% Private Trip</h4><p>Tripmu hanya untuk kamu dan rombonganmu. Tidak ada orang asing yang ikut serta.</p></div></div>
+          <div class="why-item"><div class="why-icon">🛡️</div><div><h4>Keamanan Terjamin</h4><p>Semua trip dilengkapi asuransi perjalanan dan pemandu berlisensi resmi.</p></div></div>
+        </div>
+      </div>
+      <div class="why-imgs">
+        <div><div class="wi"><img src="https://images.unsplash.com/photo-1501854140801-50d01698950b?w=400&q=80" alt="rinjani" loading="lazy"></div></div>
+        <div><div class="wi tall"><img src="https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=400&q=80" alt="gili" loading="lazy"></div></div>
+        <div><div class="wi"><img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&q=80" alt="pantai" loading="lazy"></div></div>
+        <div><div class="wi"><img src="https://images.unsplash.com/photo-1494500764479-0c8f2919a3d8?w=400&q=80" alt="lombok" loading="lazy"></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRIP LAGI VIRAL -->
+  <section class="section" style="background:var(--white);display:none" id="trendingSection">
+    <div style="text-align:center;margin-bottom:48px">
+      <div class="sec-label" style="display:block;text-align:center">Sedang Trending</div>
+      <div class="sec-title">Trip Lagi Viral 🔥</div>
+      <div class="sec-sub" style="max-width:480px;margin:12px auto 0;text-align:center">Destinasi yang paling banyak dipesan minggu ini — jangan sampai kehabisan slot!</div>
+    </div>
+    <div class="trips-grid" id="trending-trips"></div>
+    <div style="text-align:center;margin-top:36px">
+      <button class="btn-primary" onclick="nav('katalog')">Lihat Semua Destinasi →</button>
+    </div>
+  </section>
+
+  <section class="section bg-gray">
+    <div style="text-align:center;margin-bottom:48px">
+      <div class="sec-label" style="display:block;text-align:center">Destinasi Pilihan</div>
+      <div class="sec-title">Private Trip Terpopuler di Lombok</div>
+      <div class="sec-sub" style="max-width:480px;margin:12px auto 0;text-align:center">Semua perjalanan dirancang khusus untuk kamu — 100% private, no strangers!</div>
+    </div>
+    <div class="trips-grid" id="home-trips"></div>
+    <div style="text-align:center;margin-top:36px">
+      <button class="btn-primary" onclick="nav('katalog')">Lihat Semua Destinasi →</button>
+    </div>
+  </section>
+
+  <section class="section" style="background:var(--white)">
+    <div style="text-align:center" class="sec-hdr">
+      <div class="sec-label" style="display:block;text-align:center">Cara Pesan</div>
+      <div class="sec-title">Cara Booking Private Trip<br>Mudah & Cepat</div>
+    </div>
+    <div class="steps-grid">
+      <div class="step-card"><div class="step-num">1</div><h4>Pilih Destinasi</h4><p>Browse destinasi Lombok favorit dari katalog kami.</p></div>
+      <div class="step-card"><div class="step-num">2</div><h4>Pilih Tour Guide</h4><p>Pilih tour guide bersertifikat sesuai spesialisasi dan kebutuhan trip.</p></div>
+      <div class="step-card"><div class="step-num">3</div><h4>Atur Jadwal</h4><p>Tentukan tanggal, durasi, dan jumlah peserta tripmu.</p></div>
+      <div class="step-card"><div class="step-num">4</div><h4>Isi Data Diri</h4><p>Lengkapi informasi kontak dan permintaan khusus.</p></div>
+      <div class="step-card"><div class="step-num">5</div><h4>Cek Ringkasan</h4><p>Review total biaya dan detail trip sebelum submit.</p></div>
+      <div class="step-card"><div class="step-num">6</div><h4>Siap Berangkat! 🎉</h4><p>Tim kami menghubungimu dalam 1×24 jam untuk konfirmasi.</p></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="sec-hdr-flex">
+      <div><div class="sec-label">Galeri</div><div class="sec-title">Mereka yang Pernah<br>Private Trip Bersama Kami</div></div>
+      <button class="btn-outline" onclick="nav('katalog')">Lihat Semua Destinasi</button>
+    </div>
+    <div class="gallery-grid">
+      <div class="gal-item tall"><img src="https://images.unsplash.com/photo-1527004013197-933c4bb611b3?w=400&q=80" loading="lazy"></div>
+      <div><div class="gal-item" style="margin-bottom:11px"><img src="https://images.unsplash.com/photo-1501854140801-50d01698950b?w=400&q=80" loading="lazy"></div><div class="gal-item"><img src="https://images.unsplash.com/photo-1494500764479-0c8f2919a3d8?w=400&q=80" loading="lazy"></div></div>
+      <div><div class="gal-item" style="margin-bottom:11px"><img src="https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=400&q=80" loading="lazy"></div><div class="gal-item"><img src="https://images.unsplash.com/photo-1483728642387-6c3bdd6c93e5?w=400&q=80" loading="lazy"></div></div>
+      <div class="gal-item tall"><img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=400&q=80" loading="lazy"></div>
+    </div>
+  </section>
+
+  <section class="section bg-gray">
+    <div class="sec-hdr" style="text-align:center">
+      <div class="sec-label" style="display:block;text-align:center">Testimoni</div>
+      <div class="sec-title">Apa Kata Mereka?</div>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card"><div class="testi-stars">★★★★★</div><p class="testi-text">"Trip Rinjani bersama AGA luar biasa! Guide sangat profesional, semua aman dan terjadwal dengan baik. Pengalaman yang tidak akan pernah saya lupakan!"</p><div class="testi-author"><div class="testi-av"><img src="https://i.pravatar.cc/100?img=1"></div><div><div class="testi-name">Andi Pratama</div><div class="testi-role">Private Trip Rinjani — Jan 2026</div></div></div></div>
+      <div class="testi-card"><div class="testi-stars">★★★★★</div><p class="testi-text">"Private trip Gili buat ulang tahun pacar jadi sangat spesial. Tim AGA sangat detail memperhatikan semua permintaan kami. 10/10!"</p><div class="testi-author"><div class="testi-av"><img src="https://i.pravatar.cc/100?img=5"></div><div><div class="testi-name">Sari Dewi</div><div class="testi-role">Private Trip Gili — Feb 2026</div></div></div></div>
+      <div class="testi-card"><div class="testi-stars">★★★★☆</div><p class="testi-text">"Company outing di Lombok berjalan sangat lancar. Koordinasi dengan tim AGA sangat mudah, semua permintaan dipenuhi dengan cepat."</p><div class="testi-author"><div class="testi-av"><img src="https://i.pravatar.cc/100?img=8"></div><div><div class="testi-name">Budi Santoso</div><div class="testi-role">Company Outing Lombok — Mar 2026</div></div></div></div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-grid">
+      <div class="footer-brand"><h3><img src="logoTrip.png" alt="logo" style="width:28px;height:28px;object-fit:contain;vertical-align:middle;margin-right:8px;border-radius:6px">All Good Adventure</h3><p>Spesialis private trip di Lombok. Kami hadir untuk membuat setiap perjalananmu eksklusif dan tak terlupakan.</p><button class="btn-wa" onclick="showToast('Menghubungkan ke WhatsApp...','#25D366')">📱 Hubungi via WhatsApp</button></div>
+      <div class="footer-col"><h4>Layanan</h4><ul><li><a onclick="nav('katalog')">Katalog Destinasi</a></li><li><a onclick="nav('booking')">Booking Layanan</a></li><li><a onclick="nav('tourguide')">Tour Guide</a></li><li><a onclick="nav('tentang')">Tentang Kami</a></li></ul></div>
+      <div class="footer-col"><h4>Perusahaan</h4><ul><li><a onclick="nav('tentang')">Profil Perusahaan</a></li><li><a>Blog & Artikel</a></li><li><a>Karir</a></li><li><a>Kemitraan</a></li></ul></div>
+      <div class="footer-col"><h4>Bantuan</h4><ul><li><a>FAQ</a></li><li><a>Hubungi Kami</a></li><li><a>Syarat & Ketentuan</a></li><li><a>Kebijakan Privasi</a></li></ul></div>
+    </div>
+    <div class="footer-btm"><span>© 2026 All Good Adventure. Hak cipta dilindungi.</span><span>Dibuat dengan ❤️ di Lombok</span></div>
+  </footer>
+  <div class="bottom-nav"><div class="bottom-nav-inner">
+    <button class="bnav-item active" onclick="nav('beranda')"><span class="bnav-icon">🏠</span>Beranda</button>
+    <button class="bnav-item" onclick="nav('katalog')"><span class="bnav-icon">🔍</span>Katalog</button>
+    <button class="bnav-item" onclick="nav('booking')"><span class="bnav-icon">🎒</span>Booking</button>
+    <button class="bnav-item" onclick="nav('tourguide')"><span class="bnav-icon">👤</span>Guide</button>
+    <button class="bnav-item" onclick="nav('profile')"><span class="bnav-icon">👤</span>Profil</button>
+  </div></div>
+</div>
+
+<!-- ════ PAGE: KATALOG ════ -->
+<div class="page" id="page-katalog">
+  <nav class="navbar">
+    <a class="navbar-logo" onclick="nav('beranda')"><div class="logo-mark"><img src="logoTrip.png" alt="logo"></div>All Good Adventure</a>
+    <div class="navbar-links">
+      <a onclick="nav('beranda')">Beranda</a><a class="active" onclick="nav('katalog')">Katalog</a>
+      <a onclick="nav('booking')">Booking Layanan</a><a onclick="nav('tourguide')">Tour Guide</a><a onclick="nav('tentang')">Tentang Kami</a>
+    </div>
+    <div class="navbar-actions">
+      <button class="btn-ghost" onclick="nav('register')">Register</button>
+      <button class="btn-primary" onclick="nav('login')">Login →</button>
+    </div>
+    <button class="hamburger" onclick="openDrawer()"><span></span><span></span><span></span></button>
+  </nav>
+  <div class="breadcrumb"><span><a onclick="nav('beranda')">Beranda</a> › Katalog Destinasi Lombok</span></div>
+  <div class="listing-layout">
+    <aside class="filter-sidebar">
+      <div class="filter-card">
+        <h3>🔍 Filter Destinasi</h3>
+        <div class="fg"><label>Nama Destinasi</label><input type="text" class="fi" placeholder="Cari destinasi..." id="searchFilter" oninput="filterTrips()"></div>
+        <div class="fg">
+          <label>Lokasi</label>
+          <div class="pill-group">
+            <span class="pill active" id="loc-all" onclick="setKatalogLocation('all')" style="cursor:pointer">🌍 Semua</span>
+            <span class="pill" id="loc-Lombok" onclick="setKatalogLocation('Lombok')" style="cursor:pointer">📍 Lombok</span>
+            <span class="pill" id="loc-Bali" onclick="setKatalogLocation('Bali')" style="cursor:pointer">🌴 Bali</span>
+          </div>
+        </div>
+        <div class="fg">
+          <label>Kategori</label>
+          <select class="fi" id="kategoriFilter" onchange="filterTrips()">
+            <option value="">Semua Kategori</option>
+            <option>Mountain</option><option>Beach</option><option>Island</option><option>Culture</option>
+          </select>
+        </div>
+        <div class="fg">
+          <label>Rentang Harga (Rp)</label>
+          <div class="price-range">
+            <input type="number" class="fi" id="priceMin" placeholder="Min" min="0" oninput="filterTrips()">
+            <span style="font-size:12px;color:var(--body-2);flex-shrink:0">—</span>
+            <input type="number" class="fi" id="priceMax" placeholder="Max" min="0" oninput="filterTrips()">
+          </div>
+          <div id="priceRangeLabel" style="font-size:11.5px;color:var(--body-2);margin-top:5px"></div>
+        </div>
+        <div class="fg">
+          <label>Jenis Trip</label>
+          <div class="pill-group">
+            <span class="pill locked">🔒 Private Trip</span>
+          </div>
+          <div style="font-size:11.5px;color:var(--body-2);margin-top:8px">Semua trip bersifat private eksklusif.</div>
+        </div>
+        <button onclick="resetKatalogFilters()" style="width:100%;background:none;border:1.5px solid var(--stroke);color:var(--body);font-family:var(--font);font-size:12.5px;font-weight:600;padding:9px;cursor:pointer;border-radius:var(--r-sm);margin-top:6px;transition:all .2s" onmouseover="this.style.borderColor='var(--primary)';this.style.color='var(--primary)'" onmouseout="this.style.borderColor='var(--stroke)';this.style.color='var(--body)'">Reset Filter</button>
+      </div>
+    </aside>
+    <div>
+      <div class="trip-type-tabs">
+        <button class="ttype-tab active" id="ttab-all" onclick="setTripTypeTab('all')">🌍 Semua</button>
+        <button class="ttype-tab" id="ttab-oneday" onclick="setTripTypeTab('oneday')">🌅 One Day Trip</button>
+        <button class="ttype-tab" id="ttab-destination" onclick="setTripTypeTab('destination')">🗺️ Custom Destinations</button>
+      </div>
+      <div class="custom-trip-katalog-note" id="customKatalogNote">
+        <p>🗺️ <strong style="color:#fff">Destinasi untuk Custom Trip</strong> — Pilih satu atau lebih destinasi di bawah ini untuk dikombinasikan dalam trip kamu. Durasi dan harga dikonfirmasi langsung oleh admin setelah kamu kirim permintaan.</p>
+      </div>
+      <div class="listing-hdr">
+        <div><h2 id="listingTitle">Destinasi Private Trip Lombok</h2><div class="listing-count" id="listingCount">Memuat...</div></div>
+        <select class="fi" style="width:auto;padding:8px 13px" id="sortFilter" onchange="filterTrips()">
+          <option value="default">Terbaru</option>
+          <option value="price-asc">Harga Terendah</option>
+          <op tion value="price-desc">Harga Tertinggi</op>
+        </select>
+      </div>
+      <div class="trips-grid-2" id="listingGrid"></div>
+    </div>
+  </div>
+  <div class="bottom-nav"><div class="bottom-nav-inner">
+    <button class="bnav-item" onclick="nav('beranda')"><span class="bnav-icon">🏠</span>Beranda</button>
+    <button class="bnav-item active" onclick="nav('katalog')"><span class="bnav-icon">🔍</span>Katalog</button>
+    <button class="bnav-item" onclick="nav('booking')"><span class="bnav-icon">🎒</span>Booking</button>
+    <button class="bnav-item" onclick="nav('tourguide')"><span class="bnav-icon">👤</span>Guide</button>
+    <button class="bnav-item" onclick="nav('profile')"><span class="bnav-icon">👤</span>Profil</button>
+  </div></div>
+</div>
+
+<!-- ════ PAGE: BOOKING (5-STEP) ════ -->
+<div class="page" id="page-booking">
+  <nav class="navbar">
+    <a class="navbar-logo" onclick="nav('beranda')"><div class="logo-mark"><img src="logoTrip.png" alt="logo"></div>All Good Adventure</a>
+    <div class="navbar-links">
+      <a onclick="nav('beranda')">Beranda</a><a onclick="nav('katalog')">Katalog</a>
+      <a class="active" onclick="nav('booking')">Booking Layanan</a>
+      <a onclick="nav('tourguide')">Tour Guide</a><a onclick="nav('tentang')">Tentang Kami</a>
+    </div>
+    <div class="navbar-actions">
+      <button class="btn-ghost" onclick="nav('register')">Register</button>
+      <button class="btn-primary" onclick="nav('login')">Login →</button>
+    </div>
+    <button class="hamburger" onclick="openDrawer()"><span></span><span></span><span></span></button>
+  </nav>
+  <div class="breadcrumb"><span><a onclick="nav('beranda')">Beranda</a> › Booking Layanan</span></div>
+  <div class="booking-wrap">
+    <h2>Booking Private Trip</h2>
+    <p class="subtitle">Pilih jenis trip, lalu isi langkah demi langkah — tim kami akan menghubungimu dalam 1×24 jam.</p>
+
+    <!-- TRIP TYPE SELECTOR -->
+    <div id="tripTypeSelectorWrap">
+      <div style="font-size:14px;font-weight:700;color:var(--dark);margin-bottom:14px">Pilih Jenis Trip:</div>
+      <div class="trip-type-selector-2">
+        <div class="trip-type-card" id="ttc-oneday" onclick="selectBookingTripType('oneday')">
+          <div class="ttc-icon">🌅</div>
+          <div class="ttc-label">One Day Trip</div>
+          <div class="ttc-sub">Pilih satu destinasi, itinerary sudah disiapkan. Cocok untuk trip 1 hari.</div>
+          <div class="ttc-badge">Harga langsung tampil</div>
+        </div>
+        <div class="trip-type-card" id="ttc-custom" onclick="selectBookingTripType('custom')">
+          <div class="ttc-icon">🗺️</div>
+          <div class="ttc-label">Custom Trip</div>
+          <div class="ttc-sub">Bebas pilih beberapa destinasi & atur durasi sendiri. Harga dikonfirmasi admin.</div>
+          <div class="ttc-badge gray">Harga dikonfirmasi admin</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP BAR -->
+    <div class="step-bar" id="bookingStepBar" style="display:none">
+      <div class="sb-step active" id="sb-1" onclick="goToStep(1)"><div class="sb-circle">1</div><div class="sb-label">Destinasi</div></div>
+      <div class="sb-step" id="sb-2" onclick="goToStep(2)"><div class="sb-circle">2</div><div class="sb-label">Tour Guide</div></div>
+      <div class="sb-step" id="sb-3" onclick="goToStep(3)"><div class="sb-circle">3</div><div class="sb-label">Detail Perjalanan</div></div>
+      <div class="sb-step" id="sb-4" onclick="goToStep(4)"><div class="sb-circle">4</div><div class="sb-label">Data Pemesan</div></div>
+      <div class="sb-step" id="sb-5" onclick="goToStep(5)"><div class="sb-circle">5</div><div class="sb-label">Ringkasan</div></div>
+    </div>
+
+    <!-- STEP 1: DESTINASI -->
+    <div class="step-panel" id="step-1">
+      <!-- ONE DAY / REGULAR SINGLE SELECT -->
+      <div id="onedayDestSection">
+        <div class="step-title" id="step1Title">Pilih Destinasi Trip</div>
+        <div class="step-sub" id="step1Sub">Pilih destinasi Lombok yang ingin kamu kunjungi</div>
+        <div class="search-box"><input type="text" placeholder="Cari nama destinasi..." id="destSearch" oninput="renderDestGrid()"></div>
+        <div class="dest-carousel" id="destGrid"></div>
+        <div id="destSelected" style="display:none;margin-top:14px"></div>
+      </div>
+      <!-- CUSTOM MULTI-SELECT -->
+      <div id="customDestSection" style="display:none">
+        <div class="step-title">Pilih Destinasi (bisa lebih dari 1)</div>
+        <div class="step-sub">Centang semua destinasi yang ingin kamu kunjungi dalam satu trip</div>
+        <div class="custom-info-box">💡 Untuk <strong>Custom Trip</strong>, kamu bebas memilih beberapa destinasi sekaligus. Durasi & harga total akan dikonfirmasi oleh admin setelah kamu kirim permintaan.</div>
+        <div class="search-box"><input type="text" placeholder="Cari nama destinasi..." id="customDestSearch" oninput="renderCustomDestGrid()"></div>
+        <div class="custom-dest-grid" id="customDestGrid"></div>
+        <div style="margin-top:10px;font-size:13px;font-weight:600;color:var(--dark)">Destinasi terpilih:</div>
+        <div class="custom-selected-list" id="customSelectedList"><span style="font-size:12.5px;color:var(--body-2)">Belum ada destinasi dipilih</span></div>
+      </div>
+      <div class="step-nav">
+        <button class="btn-back" onclick="backToTypeSelector()">← Ganti Jenis Trip</button>
+        <button class="btn-next" id="nextBtn1" onclick="nextStep(1)" disabled>Pilih Tour Guide →</button>
+      </div>
+    </div>
+
+    <!-- STEP 2: TOUR GUIDE -->
+    <div class="step-panel" id="step-2">
+      <div style="margin-bottom:18px" id="step2-dest-chip"></div>
+      <div class="step-title">Pilih Tour Guide</div>
+      <div class="step-sub">Pilih guide terbaik sesuai spesialisasi dan preferensimu</div>
+      <div class="search-box"><input type="text" placeholder="Cari nama guide..." id="guideSearchBook" oninput="renderGuideGrid()"></div>
+      <div class="guide-carousel" id="guideGrid2"></div>
+      <div id="guideSelected" style="display:none;margin-top:14px"></div>
+      <div class="step-nav">
+        <button class="btn-back" onclick="prevStep(2)">← Kembali</button>
+        <button class="btn-next" id="nextBtn2" onclick="nextStep(2)" disabled>Detail Perjalanan →</button>
+      </div>
+    </div>
+
+    <!-- STEP 3: DETAIL PERJALANAN -->
+    <div class="step-panel" id="step-3">
+      <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px" id="step3-chips"></div>
+      <div class="step-title">Detail Perjalanan</div>
+      <div class="step-sub">Tentukan jadwal dan jumlah peserta</div>
+
+      <!-- ONE DAY: single date only -->
+      <div id="onedayDateSection" style="display:none">
+        <div class="detail-grid">
+          <div>
+            <div class="form-group">
+              <label>Tanggal Keberangkatan <span class="req">*</span></label>
+              <input type="date" class="form-input" id="tglOneday" onchange="calcOnedayDate()">
+            </div>
+            <div style="font-size:12px;color:var(--body-2);margin-top:-10px;margin-bottom:18px">Durasi tetap: 1 hari penuh (tidak menginap)</div>
+          </div>
+          <div>
+            <div class="form-group">
+              <label>Jumlah Peserta <span class="req">*</span></label>
+              <div class="counter-wrap">
+                <button class="counter-btn" onclick="changeParticipants(-1)">−</button>
+                <div class="counter-val" id="participantValOneday">1</div>
+                <button class="counter-btn" onclick="changeParticipants(1)">+</button>
+              </div>
+              <div style="font-size:12px;color:var(--body-2);margin-top:7px">Minimal 1 orang</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CUSTOM: custom duration + participants -->
+      <div id="customDurSection" style="display:none">
+        <div class="form-group">
+          <label>Berapa hari perkiraan trip kamu? <span class="req">*</span></label>
+          <div class="custom-dur-row">
+            <input type="number" class="custom-dur-input" id="customDurInput" min="1" max="14" placeholder="1" oninput="validateCustomDur()">
+            <span style="font-size:15px;font-weight:700;color:var(--dark)">Hari</span>
+          </div>
+          <div style="font-size:12px;color:var(--body-2)">Durasi perkiraan, maks. 7 hari — admin akan konfirmasi detail jadwal bersamamu.</div>
+        </div>
+        <div class="form-group">
+          <label>Tanggal Keberangkatan (perkiraan) <span class="req">*</span></label>
+          <input type="date" class="form-input" id="tglCustom" onchange="validateCustomDur()">
+        </div>
+        <div class="form-group">
+          <label>Jumlah Peserta <span class="req">*</span></label>
+          <div class="counter-wrap">
+            <button class="counter-btn" onclick="changeParticipants(-1)">−</button>
+            <div class="counter-val" id="participantValCustom">1</div>
+            <button class="counter-btn" onclick="changeParticipants(1)">+</button>
+          </div>
+          <div style="font-size:12px;color:var(--body-2);margin-top:7px">Minimal 1 orang</div>
+        </div>
+        <div class="form-group">
+          <label>Meeting Point</label>
+          <input type="text" class="form-input" id="meetingPointCustom" placeholder="Contoh: Bandara Lombok International">
+        </div>
+      </div>
+
+      <div class="step-nav">
+        <button class="btn-back" onclick="prevStep(3)">← Kembali</button>
+        <button class="btn-next" id="nextBtn3" onclick="nextStep(3)" disabled>Data Pemesan →</button>
+      </div>
+    </div>
+
+    <!-- STEP 4: DATA PEMESAN -->
+    <div class="step-panel" id="step-4">
+      <div class="step-title">Data Pemesan</div>
+      <div class="step-sub">Lengkapi informasi kontak kamu</div>
+      <div class="detail-grid">
+        <div>
+          <div class="form-group">
+            <label>Nama Lengkap <span class="req">*</span></label>
+            <input type="text" class="form-input" id="namaLengkap" placeholder="Nama lengkap kamu" oninput="validateStep4()">
+          </div>
+          <div class="form-group">
+            <label>Nomor Ponsel <span class="req">*</span></label>
+            <input type="tel" class="form-input" id="nomorPonsel" placeholder="+62 812 3456 7890" oninput="validateStep4()">
+          </div>
+        </div>
+        <div>
+          <div class="form-group">
+            <label>Email <span class="req">*</span></label>
+            <input type="email" class="form-input" id="emailPemesan" placeholder="nama@email.com" oninput="validateStep4()">
+          </div>
+          <div class="form-group">
+            <label>Catatan / Permintaan Khusus</label>
+            <textarea class="form-input" id="catatanKhusus" placeholder="Ceritakan keinginan tripmu — vegetarian, alergi, perayaan ulang tahun, dll..."></textarea>
+          </div>
+        </div>
+      </div>
+      <div id="participantNamesSection" style="margin-top:18px"></div>
+      <div class="step-nav">
+        <button class="btn-back" onclick="prevStep(4)">← Kembali</button>
+        <button class="btn-next" id="nextBtn4" onclick="nextStep(4)" disabled>Lihat Ringkasan →</button>
+      </div>
+    </div>
+
+    <!-- STEP 5: RINGKASAN & SUBMIT -->
+    <div class="step-panel" id="step-5">
+      <div class="step-title">Ringkasan & Total Biaya</div>
+      <div class="step-sub">Periksa detail tripmu sebelum mengirim permintaan</div>
+      <div id="orderSummary"></div>
+      <div class="step-nav">
+        <button class="btn-back" onclick="prevStep(5)">← Kembali</button>
+        <button class="btn-submit-final" onclick="submitBooking()">Kirim Permintaan ✈️</button>
+      </div>
+    </div>
+  </div>
+
+
+  
+  <div class="bottom-nav"><div class="bottom-nav-inner">
+    <button class="bnav-item" onclick="nav('beranda')"><span class="bnav-icon">🏠</span>Beranda</button>
+    <button class="bnav-item" onclick="nav('katalog')"><span class="bnav-icon">🔍</span>Katalog</button>
+    <button class="bnav-item active" onclick="nav('booking')"><span class="bnav-icon">🎒</span>Booking</button>
+    <button class="bnav-item" onclick="nav('tourguide')"><span class="bnav-icon">👤</span>Guide</button>
+    <button class="bnav-item" onclick="nav('profile')"><span class="bnav-icon">👤</span>Profil</button>
+  </div></div>
+</div>
+
+<!-- ════ PAGE: TOUR GUIDE ════ -->
+<div class="page" id="page-tourguide">
+  <nav class="navbar">
+    <a class="navbar-logo" onclick="nav('beranda')"><div class="logo-mark"><img src="logoTrip.png" alt="logo"></div>All Good Adventure</a>
+    <div class="navbar-links">
+      <a onclick="nav('beranda')">Beranda</a><a onclick="nav('katalog')">Katalog</a>
+      <a onclick="nav('booking')">Booking Layanan</a><a class="active" onclick="nav('tourguide')">Tour Guide</a><a onclick="nav('tentang')">Tentang Kami</a>
+    </div>
+    <div class="navbar-actions">
+      <button class="btn-ghost" onclick="nav('register')">Register</button>
+      <button class="btn-primary" onclick="nav('login')">Login →</button>
+    </div>
+    <button class="hamburger" onclick="openDrawer()"><span></span><span></span><span></span></button>
+  </nav>
+  <div class="tg-hero">
+    <div class="tg-hero-inner">
+      <div class="hero-badge" style="margin-bottom:18px">👤 Tim Profesional Kami</div>
+      <h1>Tour Guide Bersertifikat &amp; Berpengalaman</h1>
+      <p>Kenali guide-guide terbaik kami yang siap menemani setiap petualanganmu di Lombok.</p>
+      <div class="tg-stats">
+        <div><div class="tg-stat-num">48</div><div class="tg-stat-label">Guide Aktif</div></div>
+        <div><div class="tg-stat-num">4.9★</div><div class="tg-stat-label">Rata-rata Rating</div></div>
+        <div><div class="tg-stat-num">1.200+</div><div class="tg-stat-label">Trip Diselesaikan</div></div>
+        <div><div class="tg-stat-num">15+</div><div class="tg-stat-label">Tahun Pengalaman</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="tg-filters">
+    <span class="tg-filter-label">Filter:</span>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;flex:1">
+      <button class="pill active" id="tgf-all" onclick="filterGuides('all')">Semua</button>
+      <button class="pill" id="tgf-mountain" onclick="filterGuides('mountain')">Gunung</button>
+      <button class="pill" id="tgf-beach" onclick="filterGuides('beach')">Pantai &amp; Laut</button>
+      <button class="pill" id="tgf-culture" onclick="filterGuides('culture')">Budaya</button>
+      <button class="pill" id="tgf-island" onclick="filterGuides('island')">Island Hopping</button>
+    </div>
+    <input type="text" class="fi" placeholder="Cari nama guide..." id="guideSearch" oninput="filterGuides(currentGuideFilter)" style="width:220px">
+  </div>
+  <div class="tg-grid-wrap">
+    <div id="guideCountLabel" style="font-size:13.5px;color:var(--body-2);margin-bottom:20px"></div>
+    <div class="tg-grid" id="guideGrid"></div>
+  </div>
+  <div class="bottom-nav"><div class="bottom-nav-inner">
+    <button class="bnav-item" onclick="nav('beranda')"><span class="bnav-icon">🏠</span>Beranda</button>
+    <button class="bnav-item" onclick="nav('katalog')"><span class="bnav-icon">🔍</span>Katalog</button>
+    <button class="bnav-item" onclick="nav('booking')"><span class="bnav-icon">🎒</span>Booking</button>
+    <button class="bnav-item active" onclick="nav('tourguide')"><span class="bnav-icon">👤</span>Guide</button>
+    <button class="bnav-item" onclick="nav('profile')"><span class="bnav-icon">👤</span>Profil</button>
+  </div></div>
+</div>
+
+<!-- ════ PAGE: TENTANG ════ -->
+<div class="page" id="page-tentang">
+  <nav class="navbar">
+    <a class="navbar-logo" onclick="nav('beranda')"><div class="logo-mark"><img src="logoTrip.png" alt="logo"></div>All Good Adventure</a>
+    <div class="navbar-links">
+      <a onclick="nav('beranda')">Beranda</a><a onclick="nav('katalog')">Katalog</a>
+      <a onclick="nav('booking')">Booking Layanan</a><a onclick="nav('tourguide')">Tour Guide</a><a class="active" onclick="nav('tentang')">Tentang Kami</a>
+    </div>
+    <div class="navbar-actions"><button class="btn-ghost" onclick="nav('register')">Register</button><button class="btn-primary" onclick="nav('login')">Login →</button></div>
+    <button class="hamburger" onclick="openDrawer()"><span></span><span></span><span></span></button>
+  </nav>
+  <div class="about-hero">
+    <div class="about-hero-inner">
+      <div class="hero-badge" style="margin:0 auto 20px">🏔️ Sejak 2018 — Lombok</div>
+      <h1>Kami adalah <span>All Good</span> Adventure</h1>
+      <p>Berawal dari kecintaan terhadap alam Lombok, kami hadir sebagai spesialis private trip terpercaya untuk setiap perjalananmu.</p>
+      <div class="about-stats-row">
+        <div><div class="as-num">7+</div><div class="as-label">Tahun Berpengalaman</div></div>
+        <div><div class="as-num">10K+</div><div class="as-label">Traveler Puas</div></div>
+        <div><div class="as-num">50+</div><div class="as-label">Destinasi</div></div>
+        <div><div class="as-num">48</div><div class="as-label">Guide Aktif</div></div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="about-story"><div class="about-story-grid">
+    <div class="about-story-img"><img src="https://images.unsplash.com/photo-1551632811-561732d1e306?w=800&q=80"></div>
+    <div>
+      <div class="sec-label">Cerita Kami</div>
+      <h2>Dari Hobi Menjadi Misi</h2>
+      <p>All Good Adventure lahir pada tahun 2018 dari sebuah grup pendakian kecil di Lombok. Kami percaya bahwa setiap orang berhak merasakan keajaiban alam Lombok — tanpa kerumitan dan rasa khawatir.</p>
+      <p>Selama 7 tahun, kami telah menemani lebih dari 10.000 traveler dari seluruh Indonesia dan dunia menjelajahi keindahan Lombok — dari puncak Rinjani, kepulauan Gili, hingga pantai-pantai tersembunyi.</p>
+      <div style="display:flex;gap:14px;margin-top:24px;flex-wrap:wrap">
+        <button class="btn-primary" onclick="nav('katalog')">Jelajahi Destinasi →</button>
+        <button class="btn-outline" onclick="nav('tourguide')">Kenali Guide Kami</button>
+      </div>
+    </div>
+  </div></div>
+  <div class="about-values">
+    <div style="text-align:center;margin-bottom:48px"><div class="sec-label" style="display:block;text-align:center">Nilai Kami</div><div class="sec-title">Yang Kami Pegang Teguh</div></div>
+    <div class="values-grid">
+      <div class="value-card"><div class="value-icon">🌿</div><h4>Cinta Lingkungan</h4><p>Setiap trip dirancang untuk menghormati kelestarian alam dan budaya Lombok.</p></div>
+      <div class="value-card"><div class="value-icon">🛡️</div><h4>Keselamatan Utama</h4><p>Standar keselamatan ketat, asuransi perjalanan, dan guide bersertifikat.</p></div>
+      <div class="value-card"><div class="value-icon">🔒</div><h4>100% Private</h4><p>Tripmu eksklusif hanya untuk kamu dan rombongan. Tidak ada stranger yang ikut.</p></div>
+      <div class="value-card"><div class="value-icon">⭐</div><h4>Pengalaman Terbaik</h4><p>Setiap detail dirancang untuk kenangan yang tak terlupakan seumur hidup.</p></div>
+    </div>
+  </div>
+  <div class="about-team">
+    <div style="text-align:center;margin-bottom:48px"><div class="sec-label" style="display:block;text-align:center">Tim Kami</div><div class="sec-title">Orang-orang di Balik AGA</div></div>
+    <div class="team-grid">
+      <div class="team-card"><div class="team-cover"><img src="https://images.unsplash.com/photo-1501854140801-50d01698950b?w=400&q=80"></div><div class="team-av"><img src="https://i.pravatar.cc/200?img=11"></div><div class="team-name">Reza Mahendra</div><div class="team-role">Founder & CEO</div><div class="team-bio">Pendaki berpengalaman, membangun AGA dari nol.</div></div>
+      <div class="team-card"><div class="team-cover"><img src="https://images.unsplash.com/photo-1494500764479-0c8f2919a3d8?w=400&q=80"></div><div class="team-av"><img src="https://i.pravatar.cc/200?img=9"></div><div class="team-name">Dita Rahayu</div><div class="team-role">Head of Operations</div><div class="team-bio">Memastikan setiap operasional trip berjalan sempurna.</div></div>
+      <div class="team-card"><div class="team-cover"><img src="https://images.unsplash.com/photo-1483728642387-6c3bdd6c93e5?w=400&q=80"></div><div class="team-av"><img src="https://i.pravatar.cc/200?img=15"></div><div class="team-name">Agus Setiawan</div><div class="team-role">Head of Guide Training</div><div class="team-bio">Melatih dan mensertifikasi seluruh tour guide AGA.</div></div>
+      <div class="team-card"><div class="team-cover"><img src="https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=400&q=80"></div><div class="team-av"><img src="https://i.pravatar.cc/200?img=20"></div><div class="team-name">Putri Handayani</div><div class="team-role">Customer Experience</div><div class="team-bio">Memastikan setiap pelanggan puas dari awal hingga akhir.</div></div>
+    </div>
+  </div>
+  <div class="about-cta">
+    <h2>Siap Memulai Petualanganmu?</h2>
+    <p>Bergabunglah dengan 10.000+ traveler yang sudah mempercayai All Good Adventure.</p>
+    <button class="btn-cta-white" onclick="nav('katalog')">Jelajahi Destinasi Sekarang →</button>
+  </div>
+  <footer class="footer">
+    <div class="footer-grid">
+      <div class="footer-brand"><h3><img src="logoTrip.png" alt="logo" style="width:28px;height:28px;object-fit:contain;vertical-align:middle;margin-right:8px;border-radius:6px">All Good Adventure</h3><p>Spesialis private trip di Lombok, Indonesia.</p><button class="btn-wa">📱 Hubungi via WhatsApp</button></div>
+      <div class="footer-col"><h4>Layanan</h4><ul><li><a onclick="nav('katalog')">Katalog Destinasi</a></li><li><a onclick="nav('booking')">Booking Layanan</a></li><li><a onclick="nav('tourguide')">Tour Guide</a></li></ul></div>
+      <div class="footer-col"><h4>Perusahaan</h4><ul><li><a onclick="nav('tentang')">Tentang Kami</a></li><li><a>Blog</a></li><li><a>Karir</a></li></ul></div>
+      <div class="footer-col"><h4>Bantuan</h4><ul><li><a>FAQ</a></li><li><a>Hubungi Kami</a></li><li><a>Kebijakan Privasi</a></li></ul></div>
+    </div>
+    <div class="footer-btm"><span>© 2026 All Good Adventure.</span><span>Dibuat dengan ❤️ di Lombok</span></div>
+  </footer>
+  <div class="bottom-nav"><div class="bottom-nav-inner">
+    <button class="bnav-item" onclick="nav('beranda')"><span class="bnav-icon">🏠</span>Beranda</button>
+    <button class="bnav-item" onclick="nav('katalog')"><span class="bnav-icon">🔍</span>Katalog</button>
+    <button class="bnav-item" onclick="nav('booking')"><span class="bnav-icon">🎒</span>Booking</button>
+    <button class="bnav-item" onclick="nav('tourguide')"><span class="bnav-icon">👤</span>Guide</button>
+    <button class="bnav-item active" onclick="nav('tentang')"><span class="bnav-icon">ℹ️</span>Tentang</button>
+  </div></div>
+</div>
+
+<!-- ════ AUTH PAGES ════ -->
+<div class="page" id="page-register">
+  <div class="auth-layout">
+    <div class="auth-visual"><div class="auth-visual-bg"></div><div class="auth-visual-logo" onclick="nav('beranda')"><div class="logo-mark"><img src="logoTrip.png" alt="logo"></div>All Good Adventure</div><div class="auth-visual-content"><h2>Mulai Private Trip Impianmu</h2><p>Bergabung dengan 10.000+ traveler yang sudah mempercayai All Good Adventure.</p><div class="auth-visual-stats"><div><div class="avs-num">50+</div><div class="avs-label">Destinasi</div></div><div><div class="avs-num">4.9★</div><div class="avs-label">Rating</div></div><div><div class="avs-num">10K+</div><div class="avs-label">Traveler</div></div></div></div></div>
+    <div class="auth-panel"><div class="auth-inner">
+      <p style="font-size:12.5px;color:var(--body-2);margin-bottom:7px">✈️ Bergabung sekarang</p>
+      <h1>Halo! 👋</h1>
+      <p class="auth-sub">Daftar dan rasakan kemudahan private trip bersama kami!</p>
+      <div class="aig"><label>Nama Lengkap</label><input type="text" class="auth-input" placeholder="Nama lengkap kamu"></div>
+      <div class="aig"><label>Nomor Ponsel atau Email</label><input type="text" class="auth-input" placeholder="+62 atau email@kamu.com"></div>
+      <div class="aig"><label>Kata Sandi</label><input type="password" class="auth-input" placeholder="Minimal 8 karakter"></div>
+      <button class="btn-auth" onclick="nav('otp')">Daftar Sekarang →</button>
+      <p class="auth-switch">Sudah punya akun? <a onclick="nav('login')">Login Sekarang</a></p>
+    </div></div>
+  </div>
+</div>
+
+<div class="page" id="page-login">
+  <div class="auth-layout">
+    <div class="auth-visual"><div class="auth-visual-bg"></div><div class="auth-visual-logo" onclick="nav('beranda')"><div class="logo-mark"><img src="logoTrip.png" alt="logo"></div>All Good Adventure</div><div class="auth-visual-content"><h2>Selamat Datang Kembali!</h2><p>Login dan lanjutkan petualangan private tripmu bersama kami.</p><div class="auth-visual-stats"><div><div class="avs-num">50+</div><div class="avs-label">Destinasi</div></div><div><div class="avs-num">4.9★</div><div class="avs-label">Rating</div></div><div><div class="avs-num">10K+</div><div class="avs-label">Traveler</div></div></div></div></div>
+    <div class="auth-panel"><div class="auth-inner">
+      <p style="font-size:12.5px;color:var(--body-2);margin-bottom:7px">👋 Masuk ke akun kamu</p>
+      <h1>Halo!</h1>
+      <p class="auth-sub">Masuk untuk melihat booking dan riwayat tripmu.</p>
+      <div class="aig"><label>Nomor Ponsel atau Email</label><input type="text" class="auth-input" placeholder="+62 atau email@kamu.com"></div>
+      <div class="aig"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px"><label style="margin:0">Kata Sandi</label><a href="#" style="font-size:12.5px;color:var(--primary);font-weight:600">Lupa Kata Sandi?</a></div><input type="password" class="auth-input" placeholder="Kata sandi kamu"></div>
+      <button class="btn-auth" onclick="nav('profile')">Login →</button>
+      <p class="auth-switch">Belum punya akun? <a onclick="nav('register')">Daftar Sekarang</a></p>
+    </div></div>
+  </div>
+</div>
+
+
+<div class="page" id="page-otp">
+  <div class="auth-layout">
+    <div class="auth-visual"><div class="auth-visual-bg"></div><div class="auth-visual-logo" onclick="nav('beranda')"><div class="logo-mark"><img src="logoTrip.png" alt="logo"></div>All Good Adventure</div><div class="auth-visual-content"><h2>Satu Langkah Lagi!</h2><p>Verifikasi akunmu untuk mulai menikmati semua fitur All Good Adventure.</p></div></div>
+    <div class="auth-panel"><div class="auth-inner">
+      <div style="font-size:46px;text-align:center;margin-bottom:18px">🔐</div>
+      <h1 style="text-align:center;font-size:28px">Verifikasi OTP</h1>
+      <p class="auth-sub" style="text-align:center">Kode OTP telah dikirimkan ke <strong>+62 812 ****7890</strong>.</p>
+      <div class="otp-inputs">
+        <input type="text" class="otp-input" maxlength="1" id="otp0" oninput="otpNext(this,0)" onkeydown="otpBack(event,0)">
+        <input type="text" class="otp-input" maxlength="1" id="otp1" oninput="otpNext(this,1)" onkeydown="otpBack(event,1)">
+        <input type="text" class="otp-input" maxlength="1" id="otp2" oninput="otpNext(this,2)" onkeydown="otpBack(event,2)">
+        <input type="text" class="otp-input" maxlength="1" id="otp3" oninput="otpNext(this,3)" onkeydown="otpBack(event,3)">
+      </div>
+      <button class="btn-auth" onclick="nav('profile')">Verifikasi & Masuk →</button>
+      <p style="text-align:center;margin-top:14px;font-size:13.5px;color:var(--body)">Tidak menerima kode? <a href="#" style="color:var(--primary);font-weight:600" id="resendLink" onclick="startResendTimer()">Kirim Ulang OTP</a></p>
+      <p style="text-align:center;font-size:12.5px;color:var(--body-2);margin-top:7px" id="resendTimer"></p>
+      <p style="text-align:center;margin-top:18px"><a onclick="nav('register')" style="font-size:13.5px;color:var(--body);cursor:pointer">← Kembali ke Daftar</a></p>
+    </div></div>
+  </div>
+</div>
+
+<!-- ════ PROFILE ════ -->
+<div class="page" id="page-profile">
+  <nav class="navbar">
+    <a class="navbar-logo" onclick="nav('beranda')"><div class="logo-mark"><img src="logoTrip.png" alt="logo"></div>All Good Adventure</a>
+    <div class="navbar-links"><a onclick="nav('beranda')">Beranda</a><a onclick="nav('katalog')">Katalog</a><a onclick="nav('booking')">Booking Layanan</a><a onclick="nav('tourguide')">Tour Guide</a></div>
+    <div class="navbar-actions"><span style="font-size:13.5px;color:var(--body);margin-right:6px">Halo, <strong>Indra</strong>!</span><div style="width:34px;height:34px;border-radius:50%;overflow:hidden;cursor:pointer;border:2px solid var(--primary-light)"><img src="https://i.pravatar.cc/100?img=12" style="width:100%;height:100%;object-fit:cover"></div></div>
+    <button class="hamburger" onclick="openDrawer()"><span></span><span></span><span></span></button>
+  </nav>
+  <div class="profile-layout">
+    <aside><div class="prof-sidebar">
+      <div class="prof-av-wrap"><div class="prof-av"><img src="https://i.pravatar.cc/200?img=12"></div><div class="prof-name">Indra</div><div class="prof-email">Indra@gmail.com</div><div class="prof-email" style="margin-top:3px">+62 812 3456 7890</div></div>
+      <div class="prof-menu">
+        <button class="pmi active" onclick="showProfTab('akun')"><span class="pmi-ico">👤</span>Akun</button>
+        <button class="pmi" onclick="showProfTab('history')"><span class="pmi-ico">🗺️</span>Riwayat Trip</button>
+        <button class="pmi" onclick="showProfTab('wallet')"><span class="pmi-ico">💳</span>Wallet & Poin</button>
+        <button class="pmi" onclick="showProfTab('keamanan')"><span class="pmi-ico">🛡️</span>Keamanan</button>
+        <button class="pmi" onclick="showProfTab('bantuan')"><span class="pmi-ico">❓</span>Bantuan</button>
+        <div style="height:1px;background:var(--stroke);margin:10px 0"></div>
+        <button class="pmi danger" onclick="nav('login')"><span class="pmi-ico">🚪</span>Keluar</button>
+      </div>
+    </div></aside>
+    <div>
+      <div id="ptab-akun" class="prof-content">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:5px;flex-wrap:wrap;gap:10px"><div><h2>Informasi Akun</h2><p class="pcss">Kelola informasi profil dan kontak kamu</p></div><button onclick="showToast('Fitur edit profil akan segera hadir!','var(--primary)')" style="display:flex;align-items:center;gap:6px;background:var(--bg);border:1px solid var(--stroke);color:var(--dark);font-family:var(--font);font-size:13px;font-weight:600;padding:8px 14px;border-radius:var(--r-sm);cursor:pointer">✏️ Edit Profil</button></div>
+        <div class="pir"><span class="pir-label">Nama Lengkap</span><span class="pir-value">Indra</span></div>
+        <div class="pir"><span class="pir-label">Email</span><span class="pir-value">Indra@gmail.com</span></div>
+        <div class="pir"><span class="pir-label">Nomor Ponsel</span><span class="pir-value">+62 812 3456 7890</span></div>
+        <div class="pir"><span class="pir-label">Anggota Sejak</span><span class="pir-value">Januari 2024</span></div>
+        <div class="pir"><span class="pir-label">Status Akun</span><span style="background:#DCFCE7;color:#16A34A;padding:4px 12px;border-radius:50px;font-size:12px;font-weight:700">✓ Terverifikasi</span></div>
+      </div>
+      <div id="ptab-history" style="display:none" class="prof-content">
+        <h2>Riwayat Trip</h2><p class="pcss">Semua private trip yang pernah kamu pesan</p>
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <div style="display:flex;gap:14px;padding:14px;border:1px solid var(--stroke);border-radius:var(--r-md);align-items:center;flex-wrap:wrap;cursor:pointer;transition:box-shadow .2s" onmouseover="this.style.boxShadow='var(--sh-sm)'" onmouseout="this.style.boxShadow='none'"><img src="https://images.unsplash.com/photo-1501854140801-50d01698950b?w=120&q=80" style="width:76px;height:76px;border-radius:var(--r-sm);object-fit:cover;flex-shrink:0"><div style="flex:1;min-width:0"><div style="font-size:15px;font-weight:700;color:var(--dark)">Private Trip Gunung Rinjani</div><div style="font-size:12.5px;color:var(--body-2);margin-top:4px">📅 12–15 Jan 2026 · 👥 4 orang · 👤 Guide: Bima Arjuna</div></div><span style="background:#DCFCE7;color:#16A34A;padding:4px 11px;border-radius:50px;font-size:11.5px;font-weight:700;white-space:nowrap">✓ Selesai</span></div>
+          <div style="display:flex;gap:14px;padding:14px;border:1px solid var(--stroke);border-radius:var(--r-md);align-items:center;flex-wrap:wrap;cursor:pointer;transition:box-shadow .2s" onmouseover="this.style.boxShadow='var(--sh-sm)'" onmouseout="this.style.boxShadow='none'"><img src="https://images.unsplash.com/photo-1494500764479-0c8f2919a3d8?w=120&q=80" style="width:76px;height:76px;border-radius:var(--r-sm);object-fit:cover;flex-shrink:0"><div style="flex:1;min-width:0"><div style="font-size:15px;font-weight:700;color:var(--dark)">Private Trip Gili Islands</div><div style="font-size:12.5px;color:var(--body-2);margin-top:4px">📅 20–23 Mar 2026 · 👥 2 orang · 👤 Guide: Rudi Kartono</div></div><span style="background:#FEF3C7;color:#D97706;padding:4px 11px;border-radius:50px;font-size:11.5px;font-weight:700;white-space:nowrap">⏳ Akan Datang</span></div>
+        </div>
+      </div>
+      <div id="ptab-wallet" style="display:none" class="prof-content">
+        <h2>Wallet & Poin</h2><p class="pcss">Saldo dan poin reward kamu</p>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:22px">
+          <div style="background:linear-gradient(135deg,var(--primary),var(--primary-dark));border-radius:var(--r-lg);padding:22px;color:#fff"><div style="font-size:12.5px;opacity:.8;margin-bottom:7px">Saldo Wallet</div><div style="font-size:26px;font-weight:800">Rp 250.000</div></div>
+          <div style="background:var(--bg);border:1px solid var(--stroke);border-radius:var(--r-lg);padding:22px"><div style="font-size:12.5px;color:var(--body-2);margin-bottom:7px">Total Poin</div><div style="font-size:26px;font-weight:800;color:var(--dark)">1.250 <span style="font-size:13px;color:var(--body-2);font-weight:500">poin</span></div></div>
+        </div>
+        <div class="empty-state"><div class="empty-icon">📋</div><h3>Belum ada transaksi</h3><p>Riwayat transaksi akan muncul di sini.</p><button class="btn-primary" onclick="nav('katalog')">Mulai Booking →</button></div>
+      </div>
+      <div id="ptab-keamanan" style="display:none" class="prof-content">
+        <h2>Keamanan</h2><p class="pcss">Kelola kata sandi dan keamanan akun kamu</p>
+        <div class="form-group"><label>Kata Sandi Lama</label><input type="password" class="form-input" placeholder="Kata sandi saat ini"></div>
+        <div class="form-group"><label>Kata Sandi Baru</label><input type="password" class="form-input" placeholder="Kata sandi baru"></div>
+        <div class="form-group"><label>Konfirmasi Kata Sandi Baru</label><input type="password" class="form-input" placeholder="Ulangi kata sandi baru"></div>
+        <button class="btn-next" style="margin-top:8px" onclick="showToast('Kata sandi berhasil diperbarui!','var(--success)')">Simpan Perubahan</button>
+      </div>
+      <div id="ptab-bantuan" style="display:none" class="prof-content">
+        <h2>Bantuan</h2><p class="pcss">Ada yang bisa kami bantu?</p>
+        <div style="display:flex;flex-direction:column;gap:11px">
+          <div style="padding:16px;border:1px solid var(--stroke);border-radius:var(--r-md);cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:space-between" onmouseover="this.style.borderColor='var(--primary)';this.style.background='var(--primary-light)'" onmouseout="this.style.borderColor='var(--stroke)';this.style.background='var(--white)'"><div><div style="font-weight:700;color:var(--dark);margin-bottom:5px">📞 Hubungi Customer Support</div><div style="font-size:13px;color:var(--body)">Senin–Sabtu, 08.00–20.00 WIB</div></div><span style="color:var(--body-2)">›</span></div>
+          <div style="padding:16px;border:1px solid var(--stroke);border-radius:var(--r-md);cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:space-between" onmouseover="this.style.borderColor='var(--primary)';this.style.background='var(--primary-light)'" onmouseout="this.style.borderColor='var(--stroke)';this.style.background='var(--white)'"><div><div style="font-weight:700;color:var(--dark);margin-bottom:5px">💬 Chat via WhatsApp</div><div style="font-size:13px;color:var(--body)">Respons cepat via WhatsApp Business</div></div><span style="color:var(--body-2)">›</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="bottom-nav"><div class="bottom-nav-inner">
+    <button class="bnav-item" onclick="nav('beranda')"><span class="bnav-icon">🏠</span>Beranda</button>
+    <button class="bnav-item" onclick="nav('katalog')"><span class="bnav-icon">🔍</span>Katalog</button>
+    <button class="bnav-item" onclick="nav('booking')"><span class="bnav-icon">🎒</span>Booking</button>
+    <button class="bnav-item" onclick="nav('tourguide')"><span class="bnav-icon">👤</span>Guide</button>
+    <button class="bnav-item active" onclick="nav('profile')"><span class="bnav-icon">👤</span>Profil</button>
+  </div></div>
+</div>
+
+
+<script src="script.js"></script>
+</body>
+</html>
